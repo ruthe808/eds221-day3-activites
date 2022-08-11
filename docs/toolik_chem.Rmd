@@ -42,6 +42,6 @@ inlet_biochem %>%
 Find mean using purrr::map_df
 
 ```{r}
-map_df(.x = intel_biochem, .f = mean, na.rm = TRUE)
+map_df(.x = inlet_biochem, .f = mean, na.rm = TRUE)
 ```
 
