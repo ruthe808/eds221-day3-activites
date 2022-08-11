@@ -24,21 +24,24 @@ toolik_inlet <- toolik_biochem %>% dplyr::filter(site == "Toolik Inlet")
 ```
 
 ```{r}
-intel_biochem <- toolik_inlet %>% dplyr::select(p_h, doc_u_m, tdn_u_m)
+inlet_biochem <- toolik_inlet %>% dplyr::select(p_h, doc_u_m, tdn_u_m)
 ```
 
 Find mean using apply
 ```{r}
-apply(X = intel_biochem, MARGIN = 1, FUN = mean)
+apply(X = inlet_biochem, MARGIN = 2, FUN = mean, na.rm = TRUE)
 ```
 
 Find mean using across
-
+```{r}
+inlet_biochem %>%
+  summarize(across(where(is.numeric), mean, na.rm = TRUE))
+```
 
 
 Find mean using purrr::map_df
 
 ```{r}
-map_df(.x = intel_biochem, .f = mean)
+map_df(.x = intel_biochem, .f = mean, na.rm = TRUE)
 ```
 
