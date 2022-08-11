@@ -117,5 +117,3 @@ for (i in seq_along(month.name)) {
   }
 ```
 
-Part 2
-

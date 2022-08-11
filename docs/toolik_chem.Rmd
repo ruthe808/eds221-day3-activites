@@ -1,0 +1,44 @@
+---
+title: "toolik_chem"
+author: "Ruth Enriquez"
+date: "2022-08-10"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(here)
+library(janitor)
+```
+
+```{r}
+#na = "." , "NA" that's separate, turn the . & NA into a vector
+
+toolik_biochem <- read_csv(here::here("data", "2011_Kling_Akchem.csv"), na = ".") %>%
+clean_names()
+```
+
+```{r}
+toolik_inlet <- toolik_biochem %>% dplyr::filter(site == "Toolik Inlet")
+```
+
+```{r}
+intel_biochem <- toolik_inlet %>% dplyr::select(p_h, doc_u_m, tdn_u_m)
+```
+
+Find mean using apply
+```{r}
+apply(X = intel_biochem, MARGIN = 1, FUN = mean)
+```
+
+Find mean using across
+
+
+
+Find mean using purrr::map_df
+
+```{r}
+map_df(.x = intel_biochem, .f = mean)
+```
+
